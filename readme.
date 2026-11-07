@@ -1,0 +1,2 @@
+# Catch banned ID from failban.log and send to external DB (PG 17)
+# You should rewrite .env.example as .env and change path to settings, logs nad server ID

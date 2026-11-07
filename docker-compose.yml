@@ -1,0 +1,13 @@
+services:
+  f2b-monitor:
+    build: .
+    container_name: f2b-monitor
+    restart: always
+    network_mode: host
+    volumes:
+      # Локальный конфиг как есть
+      - ./.env:/app/.env:ro
+      # Серверный .env — путь берётся из локального .env, монтируем 1:1
+      - ${CONFIG_ENV_PATH:?CONFIG_ENV_PATH not set}:${CONFIG_ENV_PATH}:ro
+      # Лог fail2ban — тоже 1:1
+      - ${LOG_PATH:-/var/log/fail2ban.log}:${LOG_PATH:-/var/log/fail2ban.log}:ro
